@@ -68,9 +68,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 import glob
 direc= "/fast/work/users/reinharp_c/projects/eeg_nestedCV/HeavySmokers_vs_Neversmokers/"
 os.chdir(direc)
-#X = pd.read_csv(glob.glob("X_*hs_renamed3.csv")[0],encoding="utf-8", sep="\t", index_col=0)
-X = pd.read_csv(glob.glob("X_*xmas.csv")[0],encoding="utf-8", sep="\t", index_col=0)
-X = X.reset_index(drop=True)
+X = pd.read_csv(glob.glob("X_*xmas.csv")[0],encoding="utf-8", sep="\t", index_col=0).reset_index(drop=True)
 y = X.heavy_smokers
 X = X.drop(X.filter(regex="group|heavy|hs|ID").columns.to_list(),axis=1)
 
@@ -242,24 +240,10 @@ for i, CV_repeat in enumerate(range(N_CV_REPEATS)):
                                     ['smote',SMOTETomek()],
                                     ['outlier',reject_sampler],
                                     ['scaler', MinMaxScaler()],
-                                    #['selectKBest',SelectKBest(f_classif,k=20)],
                                     ['classifier', XGBClassifier()]])
         
         # A parameter grid for XGBoost
-       # params = {
-       #         'classifier__max_depth':[6, 8, 10, 12],
-       #         'classifier__subsample': [.6,.7, 1.0],
-       #         'classifier__colsample_bytree': [.6, .8, 1.0]}
-       #         #'classifier__gamma': [0,.1,.5]}
-                
-                 
-                
-                
-                
-        #params = {'classifier__max_depth': [4, 6, 8],
-        #         'classifier__learning_rate': [.01,.1],
-        #         'classifier__subsample': [.7,1.0]}
-        
+     
                         
         params = {
                   'classifier__max_depth':[4, 6, 8, 10],
@@ -270,8 +254,8 @@ for i, CV_repeat in enumerate(range(N_CV_REPEATS)):
                 
                 
         # Search to optimize hyperparameters
-        search = RandomizedSearchCV(pipeline, params, cv=cv_inner) #-#-#
-        search.fit(X_train, y_train) #-#=#
+        search = RandomizedSearchCV(pipeline, params, cv=cv_inner)
+        search.fit(X_train, y_train) 
         #model.fit(X_train, y_train)
 
         # evaluate the model
@@ -295,7 +279,7 @@ for i, CV_repeat in enumerate(range(N_CV_REPEATS)):
 
         # Extract SHAP information per fold per sample 
         for i, test_index in enumerate(test_outer_ix):
-            shap_values_per_cv[test_index][CV_repeat] = shap_values[i] #-#-#
+            shap_values_per_cv[test_index][CV_repeat] = shap_values[i] 
 
 
         # Append
@@ -469,20 +453,6 @@ for n in sizes:
             
             
             
-            
-
-
-from sklearn.metrics import confusion_matrix, plot_confusion_matrix, ConfusionMatrixDisplay
-tn_sve= "cm {} vs {}.png".format(labels[0],labels[1])
-cm = confusion_matrix(np.concatenate(resultsdf["ytest"]),np.concatenate(resultsdf["yhat"]))
-disp = ConfusionMatrixDisplay(confusion_matrix=cm,
-                              display_labels={labels[0],labels[1]})
-fig = disp.plot()
-plt.title("confusion matrix")
-#plt.show()
-plt.savefig(tn_sve,dpi=300)
-plt.close()
-
 
 
 
@@ -657,12 +627,4 @@ import pickle
 with open("avgshap_values.pkl","wb") as fp:
      pickle.dump(shap_vals,fp)
 
-
-
-
-
-
-import sys 
-sys.exit()
-  
 
