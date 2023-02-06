@@ -66,7 +66,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 # q50 notna
 import glob
-direc= "/fast/work/users/reinharp_c/projects/eeg_nestedCV/HeavySmokers_vs_Neversmokers/"
+direc= "/fast/work/users/projects/"
 os.chdir(direc)
 X = pd.read_csv(glob.glob("X_*xmas.csv")[0],encoding="utf-8", sep="\t", index_col=0).reset_index(drop=True)
 y = X.heavy_smokers
