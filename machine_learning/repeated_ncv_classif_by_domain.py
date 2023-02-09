@@ -405,6 +405,3 @@ for key, value in all_categories_dict.items():
     fn = "avgshap_values_{}.pkl".format(key)
     with open(fn,"wb") as fp:
         pickle.dump(shap_vals,fp)
-
-tprs
-
