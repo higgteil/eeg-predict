@@ -260,8 +260,8 @@ for key, value in all_categories_dict.items():
             # save classification_report for obtaining precision,recall,f1 and accuracy for later 
             conf_matrix_list_of_arrays.append({'count':count,
                                               'macro-avg':conf_matrix['macro avg'],
-                                              labels[1]:conf_matrix[labels[1]],
                                               labels[0]:conf_matrix[labels[0]],
+                                              labels[1]:conf_matrix[labels[1]],
                                               'weighted_avg':conf_matrix['weighted avg'],
                                               'accuracy':conf_matrix['accuracy']})
 
