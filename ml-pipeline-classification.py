@@ -801,14 +801,14 @@ get_ipython().system('rm -f /root/.gitconfig')
 get_ipython().system('pip install nbconvert')
 
 
-# In[ ]:
+# In[34]:
 
 
 from google.colab import drive
 drive.mount('/content/drive/')
 
 
-# In[ ]:
+# In[35]:
 
 
 import os
@@ -816,30 +816,31 @@ base_dir = '/content/drive/My Drive/Colab Notebooks'
 os.chdir(base_dir)
 
 
-# In[18]:
+# In[38]:
 
 
 #!jupyter nbconvert --to python cleaned-github-untitled8.ipynb
 get_ipython().system('jupyter nbconvert --to python cleaned-github-untitled8.ipynb --output ml-pipeline-classification.py')
 
 
-# In[19]:
+# In[95]:
 
 
 get_ipython().system('git init')
 
 
-# In[23]:
+# In[96]:
 
 
 get_ipython().system('git config --global user.name "higgteil"')
 get_ipython().system('git config --global user.email "pablo.reinhardt@charite.de"')
 
 
-# In[24]:
+# In[98]:
 
 
-get_ipython().system('git remote add origin https://higgteil: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@github.com/higgteil/eeg-predict/machine-learning')
+#!git remote remove origin
+get_ipython().system('git remote add origin https://higgteil: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@github.com/higgteil/eeg-predict/')
 
 
 # In[ ]:
@@ -858,37 +859,37 @@ get_ipython().system('git commit -m "Added data processing script"')
 get_ipython().system('git push -u origin main')
 
 
-# In[25]:
+# In[99]:
 
 
 get_ipython().system('git add ml-pipeline-classification.py')
 
 
-# In[26]:
+# In[100]:
 
 
 get_ipython().system('git commit -m "converted nb to py"')
 
 
-# In[27]:
+# In[101]:
 
 
 get_ipython().system('git push -u main')
 
 
-# In[28]:
+# In[102]:
 
 
-get_ipython().system('git remote -v')
+get_ipython().system('git checkout main')
 
 
-# In[29]:
+# In[103]:
 
 
-get_ipython().system('git remote set-url origin https://higgteil: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@github.com/higgteil/eeg-predict/machine-learning')
+get_ipython().system('git remote set-url origin https://higgteil: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@github.com/higgteil/eeg-predict/')
 
 
-# In[32]:
+# In[104]:
 
 
 get_ipython().system('git push origin master')
@@ -896,31 +897,62 @@ get_ipython().system('git push origin master')
 
 # ###troubleshooting
 
-# In[54]:
+# In[92]:
+
+
+# Remove existing Git repository
+get_ipython().system('rm -rf .git')
+
+# Initialize a new Git repository
+get_ipython().system('git init')
+
+# Configure Git user (replace with your information)
+get_ipython().system('git config --global user.name "higgteil"')
+get_ipython().system('git config --global user.email "pablo.reinhardt@charite.de"')
+
+# Add all files to the new repository
+get_ipython().system('git add ml-pipeline-classification.py')
+
+# Make an initial commit
+get_ipython().system('git commit -m "comm"')
+
+# Add a new remote repository (replace with your repository URL)
+get_ipython().system('git remote set-url origin https://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@github.com/higgteil/eeg-predict.git')
+# Push to the new remote repository
+get_ipython().system('git push -u origin main')
+
+
+# In[91]:
+
+
+get_ipython().system('git remote -v')
+
+
+# In[90]:
 
 
 get_ipython().system('git branch')
 
 
-# In[33]:
+# In[74]:
 
 
 get_ipython().system('git checkout -b main')
 
 
-# In[36]:
+# In[75]:
 
 
 get_ipython().system('git reset')
 
 
-# In[37]:
+# In[76]:
 
 
 get_ipython().system('git rm --cached structure.gdoc')
 
 
-# In[53]:
+# In[77]:
 
 
 get_ipython().system('echo "*.gdoc" >> .gitignore')
@@ -934,52 +966,137 @@ get_ipython().system('git restore classification_of_smoking_modularized.ipynb')
 get_ipython().system('git restore stack_shap.ipynb')
 
 
-# In[40]:
+# In[60]:
 
 
 get_ipython().system('git add ml-pipeline-classification.py')
 
 
-# In[41]:
-
-
-get_ipython().system('git push -u origin main')
-
-
 # In[ ]:
 
 
-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
+#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
+#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
 
 
-# In[42]:
+# In[87]:
 
 
 get_ipython().system('git config --global user.name "higgteil"')
 get_ipython().system('git config --global user.email "pablo.reinhardt@charite.de"')
 
 
-# In[57]:
+# In[89]:
 
 
-get_ipython().system('git remote set-url origin https://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@github.com/higgteil/eeg-predict/machine-learning.git')
+get_ipython().system('git remote set-url origin https://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@github.com/higgteil/eeg-predict.git')
 
 
-# In[55]:
+# In[10]:
 
 
 #!git remote set-url origin https://github.com/higgteil/eeg-predict/tree/67b376e469a94b2c630f3d2d7c225f75bdcb8993/machine_learning.git
 
 
-# In[58]:
+# In[105]:
 
 
 get_ipython().system('git config --global credential.helper store')
-get_ipython().system('echo "https://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:x-oauth-basic@github.com" > ~/.git-credentials')
+get_ipython().system('echo "https://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:x-oauth-basic@github.com" > ~/.git-credentials')
 
 
-# In[59]:
+# In[106]:
 
 
 get_ipython().system('git push -u origin main')
+
+
+# In[63]:
+
+
+rm -fr ".git/rebase-merge"
+
+
+# In[66]:
+
+
+get_ipython().system('git rebase --continue')
+
+
+# In[80]:
+
+
+get_ipython().system('git pull origin main')
+
+
+# In[16]:
+
+
+get_ipython().system('git rebase --edit-todo')
+get_ipython().system('git rebase --continue')
+get_ipython().system('git config pull.rebase true')
+
+
+
+# In[107]:
+
+
+# Pull remote changes (merging them)
+get_ipython().system('git pull main')
+
+
+# In[108]:
+
+
+get_ipython().system('git status')
+get_ipython().system('git remote -v')
+
+
+# In[109]:
+
+
+get_ipython().system('git add ml-pipeline-classification.py')
+
+
+# In[110]:
+
+
+get_ipython().system('git commit -m "Add .gitignore and update ml-pipeline-classification.py"')
+
+
+# In[57]:
+
+
+get_ipython().system('git remote -v')
+
+
+# In[112]:
+
+
+get_ipython().system('git push https://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@github.com/higgteil/eeg-predict')
+
+
+# In[111]:
+
+
+get_ipython().system('git remote -v')
+
+
+# In[81]:
+
+
+get_ipython().system('git credential-cache exit')
+get_ipython().system('git config --global credential.helper cache')
+
+
+# In[113]:
+
+
+get_ipython().system('git status')
+
+
+# In[ ]:
+
+
+
 
