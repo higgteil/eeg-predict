@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 from google.colab import drive
 drive.mount('/content/drive/')
 
 
-# In[ ]:
+# In[2]:
 
 
 get_ipython().system('pip install shap xgboost imblearn')
 
 
-# In[ ]:
+# In[3]:
 
 
 import numpy as np
@@ -52,7 +52,7 @@ import shutil
 from tensorflow.keras.models import load_model
 
 
-# In[ ]:
+# In[4]:
 
 
 def plot_roc_curve(mean_fpr, tprs, aucs, labels):
@@ -93,7 +93,7 @@ def plot_roc_curve(mean_fpr, tprs, aucs, labels):
 
 
 
-# In[ ]:
+# In[5]:
 
 
 def create_modified_shap_plot(model, X, max_display=10, **kwargs):
@@ -263,7 +263,7 @@ def create_modified_shap_plot_aggregated(aggregated_shap: np.ndarray,
         return None
 
 
-# In[ ]:
+# In[6]:
 
 
 import numpy as np
@@ -309,7 +309,7 @@ def generate_mock_data(n_samples=1000):
 #print(y.head())
 
 
-# In[ ]:
+# In[7]:
 
 
 import json
@@ -475,7 +475,7 @@ with open('results.json', 'r') as file:
 print(data)
 
 
-# In[ ]:
+# In[8]:
 
 
 import numpy as np
@@ -499,7 +499,7 @@ def aggregate_shap_values(model, X_test, test_outer_ix, idx_repeat, idx_fold):
     })
 
 
-# In[ ]:
+# In[9]:
 
 
 def outlier_rejection(X, y, max_samples='auto', contamination='auto', random_state=1510):
@@ -523,7 +523,7 @@ def outlier_rejection(X, y, max_samples='auto', contamination='auto', random_sta
 reject_sampler = FunctionSampler(func=outlier_rejection)
 
 
-# In[ ]:
+# In[10]:
 
 
 warnings.filterwarnings("ignore")
@@ -632,6 +632,8 @@ def plot_roc_curve(mean_fpr, tprs, aucs, labels, directory):
     return
     pass
 
+
+# In[11]:
 
 
 def nested_cross_validation(X, y, n_cv_repeats, random_states, ae, labels, directory):
@@ -773,28 +775,22 @@ if __name__ == "__main__":
     main()
 
 
-# In[ ]:
-
-
-
-
-
 # ## **nbconvert and push to git**
 
-# In[1]:
+# In[ ]:
 
 
 get_ipython().system('pip install nbconvert')
 
 
-# In[9]:
+# In[ ]:
 
 
 from google.colab import drive
 drive.mount('/content/drive/')
 
 
-# In[10]:
+# In[ ]:
 
 
 import os
@@ -802,42 +798,80 @@ base_dir = '/content/drive/My Drive/Colab Notebooks'
 os.chdir(base_dir)
 
 
-# In[16]:
+# In[ ]:
 
 
 #!jupyter nbconvert --to python cleaned-github-untitled8.ipynb
-get_ipython().system('jupyter nbconvert --to python cleaned-github-untitled8.ipynb --output ml-pipeline-classif.py')
+get_ipython().system('jupyter nbconvert --to python cleaned-github-untitled8.ipynb --output ml-pipeline-classification.py')
 
 
-# In[14]:
+# In[ ]:
+
+
+get_ipython().system('git init')
+
+
+# In[ ]:
 
 
 get_ipython().system('git config --global user.name "higgteil"')
 get_ipython().system('git config --global user.email "pablo.reinhardt@charite.de"')
+
+
+# In[ ]:
+
+
+get_ipython().system('git remote add origin https://higgteil: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@github.com/higgteil/eeg-predict/machine-learning')
+
+
+# In[ ]:
+
+
+# Set the branch (if needed)
+#!git branch -M main
+
+# Add the file
+get_ipython().system('git add my_python_script.py')
+
+# Commit the changes
+get_ipython().system('git commit -m "Added data processing script"')
+
+# Push the changes
+get_ipython().system('git push -u origin main')
+
+
+# In[ ]:
+
+
+get_ipython().system('git add ml-pipeline-classification.py')
+
+
+# In[ ]:
+
+
+get_ipython().system('git commit -m "converted nb to py"')
+
+
+# In[ ]:
+
+
+get_ipython().system('git push -u origin main')
+
+
+# In[ ]:
+
+
 get_ipython().system('git remote -v')
 
 
-# In[15]:
+# In[ ]:
 
 
-get_ipython().system('git init')
-#!git remote add origin https://higgteil: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@github.com/higgteil/eeg-predict/machine-learning
+get_ipython().system('git remote set-url origin https://higgteil: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@github.com/higgteil/eeg-predict/machine-learning')
 
 
 # In[ ]:
 
 
-git add cleaned-github-untitled8.txt
-
-
-# In[13]:
-
-
-get_ipython().system('git commit -m "convert nb to script"')
-
-
-# In[ ]:
-
-
-
+get_ipython().system('git push origin main')
 
